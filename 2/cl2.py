@@ -9,4 +9,5 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((SERVER_HOST, SERVER_PORT))
 print("[+] Connected to server")
 
-print(s.recv(409600).decode())
+while 1:
+    print(s.recv(409600).decode())

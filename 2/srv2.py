@@ -6,13 +6,22 @@ import sys
 connections = []
 
 def list():
+    num = 0
     for connection in connections:
-        print(connection)
+        print(f'[{num}]  {connection['address']}')
+        num += 1 
+    print("use number for interaction with socket. For example 'use 0'")  #MAKE HERE BEAUTIFUL
 
 def help():
     pass
 
-
+def use(session):
+    session = int(session)
+    if connections[session]:
+        client_socket = connections[session]['socket']
+        client_socket.send('salam'.encode())
+    else:
+        print("ID does not exist!")
 
 def transfer():
     pass
@@ -69,3 +78,5 @@ while 1:
             shell(command[1])
         case 'exit':
             exit()
+        case 'use':
+            use(command[1])
