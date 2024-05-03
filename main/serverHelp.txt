@@ -3,3 +3,23 @@ commands:
 •use
 •help
 
+agent commands:
+download
+upload
+exit
+help
+
+
+
+
+#############################################################################
+list    Lists all connected clients                                         #
+use     Usage: 'use <number of session>' interracting with specific target    #
+help    shows this page                                                     #
+#############################################################################
+
+
+download    Usage: 'download <from(target's path)> <where(your path)>'
+upload      Usage:  'upload <where(your path)> <from(target's path)>'
+exit        exiting from current session
+help        shows this page

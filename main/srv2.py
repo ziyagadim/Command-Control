@@ -30,13 +30,27 @@ def list():
 
     print(table)
     
-    print("use number for interaction with socket. For example 'use 0'")  #MAKE HERE BEAUTIFUL
+    print("\nUse number for interaction with socket. For example 'use 0'")  #MAKE HERE BEAUTIFUL
 
     # print(connections)
 
 
+def session_help():
+    print("""
+    download    Usage: 'download <from(target's path)> <where(your path)>'
+    upload      Usage:  'upload <where(your path)> <from(target's path)>'
+    exit        exiting from current session
+    help        shows this page
+    """)
+
+
 def help():
-    print("list\nuse\nexit")
+    print("""
+    list    Lists all connected clients                                        
+    use     Usage: 'use <number of session>' interracting with specific target    
+    help    shows this page    
+
+""")
 
 
 def use(session):
@@ -63,7 +77,7 @@ def use(session):
 
 def exit():
     server_socket.close()
-    sys.exit()
+    time.sleep(1)
 
 
 def listen_incoming():
@@ -129,6 +143,7 @@ while 1:
             pass
         case 'exit':
             exit()
+            break
         case 'use':
             use(command[1])
             
