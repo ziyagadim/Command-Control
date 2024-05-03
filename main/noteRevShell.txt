@@ -1,0 +1,1 @@
+get reverse shell but when type exit not working
