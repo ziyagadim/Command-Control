@@ -1,3 +1,7 @@
-INFO:__main__:So should this
-INFO:root:So should this
-INFO:root:So should this
+[INFO]7-May-2024 19:39:04:Connection recieved from:('127.0.0.1', 62231)
+[INFO]7-May-2024 19:39:13:Command executed:lis
+[INFO]7-May-2024 19:39:16:Command executed:list
+[INFO]7-May-2024 19:39:25:Command executed:use 0
+[INFO]7-May-2024 19:39:37:Command executed on [127.0.0.1:62231]:help
+[INFO]7-May-2024 19:39:49:Command executed on [127.0.0.1:62231]:exit
+[INFO]7-May-2024 19:39:50:Command executed:exit
