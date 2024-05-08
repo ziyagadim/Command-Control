@@ -5,3 +5,133 @@
 [INFO]7-May-2024 19:39:37:Command executed on [127.0.0.1:62231]:help
 [INFO]7-May-2024 19:39:49:Command executed on [127.0.0.1:62231]:exit
 [INFO]7-May-2024 19:39:50:Command executed:exit
+[INFO]8-May-2024 08:32:14:Connection recieved from:('127.0.0.1', 62689)
+[INFO]8-May-2024 08:32:17:Command executed:list
+[INFO]8-May-2024 08:32:21:Command executed:
+[INFO]8-May-2024 08:32:21:Command executed:
+[INFO]8-May-2024 08:32:22:Command executed:
+[INFO]8-May-2024 08:32:22:Command executed:
+[INFO]8-May-2024 08:32:23:Command executed:
+[INFO]8-May-2024 08:32:23:Command executed:
+[INFO]8-May-2024 08:32:23:Command executed:
+[INFO]8-May-2024 08:32:30:Command executed:help
+[INFO]8-May-2024 08:32:36:Command executed:use 5
+[INFO]8-May-2024 08:34:33:Connection recieved from:('127.0.0.1', 62698)
+[INFO]8-May-2024 08:34:36:Command executed:list
+[INFO]8-May-2024 08:34:38:Command executed:use 3
+[INFO]8-May-2024 08:34:52:Command executed:use 500
+[INFO]8-May-2024 08:34:55:Command executed:use yfsvhj
+[INFO]8-May-2024 08:36:06:Connection recieved from:('127.0.0.1', 62705)
+[INFO]8-May-2024 08:36:09:Command executed:list
+[INFO]8-May-2024 08:36:42:Command executed:use sunv
+[INFO]8-May-2024 08:39:07:Connection recieved from:('127.0.0.1', 62720)
+[INFO]8-May-2024 08:39:09:Command executed:list
+[INFO]8-May-2024 08:39:38:Command executed:help
+[INFO]8-May-2024 08:40:01:Command executed:use 0
+[INFO]8-May-2024 08:40:04:Command executed on [127.0.0.1:62720]:help
+[INFO]8-May-2024 08:40:10:Command executed on [127.0.0.1:62720]:exit
+[INFO]8-May-2024 08:48:28:Command executed:use tfscjha
+[INFO]8-May-2024 08:48:50:Connection recieved from:('127.0.0.1', 62797)
+[INFO]8-May-2024 08:48:55:Command executed:list
+[INFO]8-May-2024 08:48:58:Command executed:use 0
+[INFO]8-May-2024 08:49:01:Command executed on [127.0.0.1:62797]:exit
+[INFO]8-May-2024 08:49:03:Command executed:use dvsbuio
+[INFO]8-May-2024 08:51:13:Command executed:use
+[INFO]8-May-2024 08:52:04:Command executed:exit
+[INFO]8-May-2024 08:52:42:Connection recieved from:('127.0.0.1', 62846)
+[INFO]8-May-2024 08:52:46:Command executed:list
+[INFO]8-May-2024 08:52:49:Command executed:list avyi
+[INFO]8-May-2024 08:52:57:Command executed:list 123
+[INFO]8-May-2024 08:53:07:Command executed:use fs
+[INFO]8-May-2024 08:53:41:Command executed:use 3
+[INFO]8-May-2024 08:59:29:Connection recieved from:('127.0.0.1', 62900)
+[INFO]8-May-2024 08:59:32:Command executed:clear
+[INFO]8-May-2024 09:00:03:Command executed:list
+[INFO]8-May-2024 09:00:59:Command executed:use use 0
+[INFO]8-May-2024 09:01:01:Command executed:use
+[INFO]8-May-2024 09:01:04:Command executed:use 1
+[INFO]8-May-2024 09:01:07:Command executed:usee
+[INFO]8-May-2024 09:01:11:Command executed:use 0.2
+[INFO]8-May-2024 09:01:17:Command executed:use 0 " 1
+[INFO]8-May-2024 09:03:33:Command executed on [127.0.0.1:62900]:cls
+[INFO]8-May-2024 09:03:35:Command executed on [127.0.0.1:62900]:clear
+[INFO]8-May-2024 09:03:46:Command executed on [127.0.0.1:62900]:exit
+[INFO]8-May-2024 09:03:48:Command executed:claer
+[INFO]8-May-2024 09:03:49:Command executed:clear
+[INFO]8-May-2024 09:03:51:Command executed:exit
+[INFO]8-May-2024 09:04:06:Connection recieved from:('127.0.0.1', 62921)
+[INFO]8-May-2024 09:04:12:Command executed:use 0 123
+[INFO]8-May-2024 09:04:37:Command executed on [127.0.0.1:62921]:exit
+[INFO]8-May-2024 09:04:38:Command executed:salam
+[INFO]8-May-2024 09:04:40:Command executed:malas
+[INFO]8-May-2024 09:12:58:Connection recieved from:('127.0.0.1', 62949)
+[INFO]8-May-2024 09:13:03:Command executed:use 0 123
+[INFO]8-May-2024 09:16:52:Connection recieved from:('127.0.0.1', 62958)
+[INFO]8-May-2024 09:17:03:Command executed:use 0 2345
+[INFO]8-May-2024 09:24:59:Command executed on [127.0.0.1:62958]:exit
+[INFO]8-May-2024 09:25:01:Command executed:list
+[INFO]8-May-2024 09:25:05:Command executed:use 0 0 0
+[INFO]8-May-2024 09:25:57:Connection recieved from:('127.0.0.1', 62993)
+[INFO]8-May-2024 09:26:00:Command executed:use 0 0 0 
+[INFO]8-May-2024 09:26:04:Command executed:cls
+[INFO]8-May-2024 09:26:09:Command executed:clear
+[INFO]8-May-2024 09:33:09:Connection recieved from:('127.0.0.1', 63029)
+[INFO]8-May-2024 09:33:13:Command executed:list
+[INFO]8-May-2024 09:33:19:Command executed:use 0\
+[INFO]8-May-2024 09:33:24:Command executed:use 0
+[INFO]8-May-2024 09:33:38:Command executed on [127.0.0.1:63029]:help
+[INFO]8-May-2024 09:33:44:Command executed on [127.0.0.1:63029]:ss
+[INFO]8-May-2024 09:39:19:Connection recieved from:('127.0.0.1', 63071)
+[INFO]8-May-2024 09:39:23:Command executed:use 0
+[INFO]8-May-2024 09:39:24:Command executed on [127.0.0.1:63071]:ss
+[INFO]8-May-2024 09:45:16:Connection recieved from:('127.0.0.1', 63095)
+[INFO]8-May-2024 09:45:21:Command executed:use 0
+[INFO]8-May-2024 09:45:21:Command executed on [127.0.0.1:63095]:ss
+[INFO]8-May-2024 09:51:06:Connection recieved from:('127.0.0.1', 63134)
+[INFO]8-May-2024 09:51:19:Command executed:use 0
+[INFO]8-May-2024 09:51:20:Command executed on [127.0.0.1:63134]:ss
+[INFO]8-May-2024 09:51:29:Command executed on [127.0.0.1:63134]:ss
+[INFO]8-May-2024 14:01:22:Connection recieved from:('127.0.0.1', 64377)
+[INFO]8-May-2024 14:01:26:Command executed:list
+[INFO]8-May-2024 14:01:31:Command executed:list 0
+[INFO]8-May-2024 14:01:56:Command executed:use 0
+[INFO]8-May-2024 14:01:56:Command executed on [127.0.0.1:64377]:ss
+[INFO]8-May-2024 14:02:15:Command executed on [127.0.0.1:64377]:help
+[INFO]8-May-2024 14:02:37:Command executed on [127.0.0.1:64377]:shell 23
+[INFO]8-May-2024 14:09:24:Command executed on [127.0.0.1:64377]:help
+[INFO]8-May-2024 14:18:51:Connection recieved from:('127.0.0.1', 64472)
+[INFO]8-May-2024 14:18:54:Command executed:list
+[INFO]8-May-2024 14:18:57:Command executed:use 0
+[INFO]8-May-2024 14:19:04:Command executed on [127.0.0.1:64472]:download salam alas
+[INFO]8-May-2024 14:21:00:Command executed on [127.0.0.1:64472]:sa
+[INFO]8-May-2024 14:21:03:Command executed on [127.0.0.1:64472]:ss
+[INFO]8-May-2024 14:22:04:Connection recieved from:('127.0.0.1', 64487)
+[INFO]8-May-2024 14:22:07:Command executed:use 0
+[INFO]8-May-2024 14:22:14:Command executed on [127.0.0.1:64487]:downlod salam malas
+[INFO]8-May-2024 14:24:42:Command executed on [127.0.0.1:64487]:download salam malas
+[INFO]8-May-2024 14:24:44:Command executed on [127.0.0.1:64487]:sa
+[INFO]8-May-2024 14:24:47:Command executed on [127.0.0.1:64487]:ss
+[INFO]8-May-2024 14:25:28:Connection recieved from:('127.0.0.1', 64505)
+[INFO]8-May-2024 14:25:32:Command executed:clear
+[INFO]8-May-2024 14:25:36:Command executed:list
+[INFO]8-May-2024 14:25:55:Command executed:use 0
+[INFO]8-May-2024 14:25:59:Command executed on [127.0.0.1:64487]:ss
+[INFO]8-May-2024 14:29:03:Connection recieved from:('127.0.0.1', 64532)
+[INFO]8-May-2024 14:29:06:Command executed:list
+[INFO]8-May-2024 14:29:16:Command executed:use 0
+[INFO]8-May-2024 14:29:19:Command executed on [127.0.0.1:64532]:ss
+[INFO]8-May-2024 14:29:25:Command executed on [127.0.0.1:64532]:download sa as
+[INFO]8-May-2024 14:30:03:Command executed on [127.0.0.1:64532]:ss
+[INFO]8-May-2024 14:30:06:Command executed:list
+[INFO]8-May-2024 14:31:10:Connection recieved from:('127.0.0.1', 64552)
+[INFO]8-May-2024 14:31:13:Command executed:list
+[INFO]8-May-2024 14:31:17:Command executed:use 0
+[INFO]8-May-2024 14:31:23:Command executed on [127.0.0.1:64552]:download as sa
+[INFO]8-May-2024 14:31:35:Command executed on [127.0.0.1:64552]:download 1 3
+[INFO]8-May-2024 14:31:42:Command executed on [127.0.0.1:64552]:ss
+[INFO]8-May-2024 14:32:31:Command executed on [127.0.0.1:64552]:exit
+[INFO]8-May-2024 14:32:32:Command executed:exit
+[INFO]8-May-2024 14:33:31:Connection recieved from:('127.0.0.1', 64565)
+[INFO]8-May-2024 14:33:34:Command executed:exit
+[INFO]8-May-2024 14:34:01:Connection recieved from:('127.0.0.1', 64569)
+[INFO]8-May-2024 14:34:03:Command executed:exit

