@@ -148,3 +148,9 @@
 [INFO]10-May-2024 09:30:17:Shell command executed on [127.0.0.1:49428]:exit
 [INFO]10-May-2024 09:31:22:Command executed on [127.0.0.1:49428]:exit
 [INFO]10-May-2024 09:31:24:Command executed:exit
+[INFO]10-May-2024 16:54:10:Command executed:help
+[INFO]10-May-2024 16:56:27:Command executed:& c:/users/student/appdata/local/programs/python/python313/python.exe c:/users/student/desktop/piton/command-control/main/cl2.py
+[INFO]10-May-2024 16:56:32:Command executed:& c:/users/student/appdata/local/programs/python/python313/python.exe c:/users/student/desktop/piton/command-control/main/cl2.py
+[INFO]10-May-2024 16:56:41:Connection recieved from:('127.0.0.1', 56948)
+[INFO]10-May-2024 16:56:44:Command executed:use 0
+[INFO]10-May-2024 16:56:47:Command executed on [127.0.0.1:56948]:help
