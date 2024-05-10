@@ -135,3 +135,16 @@
 [INFO]8-May-2024 14:33:34:Command executed:exit
 [INFO]8-May-2024 14:34:01:Connection recieved from:('127.0.0.1', 64569)
 [INFO]8-May-2024 14:34:03:Command executed:exit
+[INFO]10-May-2024 09:26:41:Connection recieved from:('127.0.0.1', 49428)
+[INFO]10-May-2024 09:26:54:Command executed:help
+[INFO]10-May-2024 09:27:07:Command executed:list
+[INFO]10-May-2024 09:27:11:Command executed:use 0
+[INFO]10-May-2024 09:27:13:Command executed on [127.0.0.1:49428]:help
+[INFO]10-May-2024 09:28:18:Command executed on [127.0.0.1:49428]:ss
+[INFO]10-May-2024 09:29:11:Command executed on [127.0.0.1:49428]:download c:\salam.txt c:\salam
+[INFO]10-May-2024 09:30:05:Command executed on [127.0.0.1:49428]:shell
+[INFO]10-May-2024 09:30:07:Shell command executed on [127.0.0.1:49428]:
+[INFO]10-May-2024 09:30:11:Shell command executed on [127.0.0.1:49428]:id
+[INFO]10-May-2024 09:30:17:Shell command executed on [127.0.0.1:49428]:exit
+[INFO]10-May-2024 09:31:22:Command executed on [127.0.0.1:49428]:exit
+[INFO]10-May-2024 09:31:24:Command executed:exit

