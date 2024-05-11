@@ -154,3 +154,11 @@
 [INFO]10-May-2024 16:56:41:Connection recieved from:('127.0.0.1', 56948)
 [INFO]10-May-2024 16:56:44:Command executed:use 0
 [INFO]10-May-2024 16:56:47:Command executed on [127.0.0.1:56948]:help
+[INFO]11-May-2024 12:13:52:Connection recieved from:('127.0.0.1', 51282)
+[INFO]11-May-2024 12:36:59:Command executed:exit
+[INFO]11-May-2024 12:37:56:Connection recieved from:('127.0.0.1', 51404)
+[INFO]11-May-2024 12:38:09:Command executed:list
+[INFO]11-May-2024 12:38:25:Command executed:use 0
+[INFO]11-May-2024 12:38:26:Command executed on [127.0.0.1:51404]:ss
+[INFO]11-May-2024 12:38:34:Command executed on [127.0.0.1:51404]:exit
+[INFO]11-May-2024 12:38:35:Command executed:exit
