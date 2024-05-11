@@ -1,10 +1,12 @@
 # com&conTROLL
-com&conTROLL is basic C2 server for multiple clients.
+com&conTROLL is a basic C2 server for multiple clients.
 
 ## Installation
 1.First download project as zip from https://github.com/ziyagadim/Command-Control.git
+
 2.Unzip package and open path in cmd
-3.
+
+3.Install requirements
 ```bash
 pip install -r requirements.txt
 ```
@@ -32,5 +34,7 @@ exit        Exiting from current client's session
 
 ## Things you need to know
 • screenshoot function can make error for screen size problems
+
 • Change IP address and port on both server and client code into yours.
+
 • Change download path on server.py script into yours. (line 41)
